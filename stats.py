@@ -18,6 +18,28 @@ def character_counter(words):
             charactery = character.lower()
             if charactery in character_count:
                 character_count[charactery] += 1
-            else :character_count[charactery] = 1
+            elif f"{charactery}".isalpha(): 
+                character_count[charactery] = 1
 
     return character_count
+
+def dic_sort(dic):
+    sorted_dic = (dict(sorted
+                       (dic.items(), 
+                        key=lambda 
+                        item: item[1], 
+                        reverse=True)))
+    return sorted_dic
+
+def formated_info(words_count, file_path, character_count):
+    report = ""
+    report += "============ BOOKBOT ============\n"
+    report += f"Analyzing book found at {file_path}...\n"
+    report += "----------- Word Count ----------\n"
+    report += f"Found {words_count} total words\n"
+    report += "--------- Character Count -------\n"
+    sorted_dic = dic_sort(character_count)
+    for keys in sorted_dic:
+        report += f"{keys}: {sorted_dic[keys]}\n"
+    report += "============= END ==============="
+    return report
